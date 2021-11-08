@@ -1,52 +1,26 @@
-import { useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 
-import Modal from "../ui/Modal";
-import Backdrop from "../ui/Backdrop";
-import Card from "../layout/Card";
+import LoginForm from "../authenticate/LoginForm";
 
 const LoginPage = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const history = useHistory();
 
-  const idInputRef = useRef();
-  const passwordInputRef = useRef();
+  const accounts = {
+    loginID: "admin",
+    password: "admin",
+  };
 
-  function submitHandler(event) {
-    event.preventDefault();
-    setModalIsOpen(true);
-
-    const enteredID = idInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
-
-    const loginData = {
-      id: enteredID,
-      password: enteredPassword,
-    };
-  }
-
-  function closeModalHandler() {
-    setModalIsOpen(false);
+  function loginHandler(loginData) {
+    console.log(accounts.loginID);
+    console.log(loginData.loginID);
+    loginData.loginID == accounts.loginID ? console.log("yes") : console.log("no");
+    loginData.password == accounts.password ? console.log("yes") : console.log("no");
   }
 
   return (
-    <Card>
-    <div className='modal'>
-      <form onSubmit={submitHandler}>
-        <div>
-          <label>ID: </label>
-          <input type="text" required id="id" ref={idInputRef} />
-        </div>
-        <div>
-          <label>Password: </label>
-          <input type="text" required id="password" ref={passwordInputRef} />
-        </div>
-        <div>
-          <button className="btn">Proceed</button>
-        </div>
-      </form>
-      {modalIsOpen && <Modal onClick={closeModalHandler}/>}
-      {modalIsOpen && <Backdrop />}
-    </div>
-    </Card>
+    <section>
+      <LoginForm onLogin={loginHandler} />
+    </section>
   );
 };
 

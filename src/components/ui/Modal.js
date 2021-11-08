@@ -1,7 +1,7 @@
 const Modal = ({ onClick }) => {
   return (
     <div className='modal'>
-      <p>Logging in progress</p>
+      <p>Wrong login info</p>
       <button className='btn' onClick={onClick}>Cancel</button>
     </div>
   )

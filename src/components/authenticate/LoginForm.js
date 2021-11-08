@@ -18,7 +18,7 @@ const LoginForm = ({ onLogin }) => {
     const enteredPassword = passwordInputRef.current.value;
 
     const loginData = {
-      id: enteredID,
+      loginID: enteredID,
       password: enteredPassword,
     };
 
@@ -46,7 +46,7 @@ const LoginForm = ({ onLogin }) => {
         </div>
       </form>
       {modalIsOpen && <Modal onClick={closeModalHandler}/>}
-      {modalIsOpen && <Backdrop />}
+      {modalIsOpen && <Backdrop onClick={closeModalHandler}/>}
     </div>
     </Card>
   );
